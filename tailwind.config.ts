@@ -6,15 +6,21 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
-    },
+  theme:{
+    extend:{},
+    colors:{
+      primary: "#191A19",
+      secondary: "#00224D",
+      input:"#0A0B0A",
+      focous: "#5D0E41",
+      success: "#4E9F3D",
+      information: "#125BB8",
+      whiteColor: "#fff"
+    }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer')
+  ],
 };
 export default config;
