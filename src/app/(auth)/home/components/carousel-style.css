@@ -1,14 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 .carousel-wrapper {
     padding: 120px 0px;
     width: 100%;
     position: relative;
     height: 200px;
 }
-
 
 .carousel-item {
     width: 300px;

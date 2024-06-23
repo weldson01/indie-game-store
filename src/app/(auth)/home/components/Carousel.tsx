@@ -1,6 +1,8 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./carousel-style.css";
+import { ArrowCircleRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowCircleLeft } from "@phosphor-icons/react";
 
 export default function Carousel() {
     const carouselInit = [
@@ -11,7 +13,6 @@ export default function Carousel() {
         { src: "/images/wow.png", info: "GTA: Is a Game" },
     ]
     const [carousel, setCarousel] = useState(carouselInit);
-    const [isShowDetails, setIsShowDatails] = useState(false)
     function handleMoveLeft() {
         let aux = carousel[0]
         let auxCarousel = [...carousel]
@@ -31,27 +32,15 @@ export default function Carousel() {
         setCarousel(auxCarousel)
     }
 
-    if (!isShowDetails) {
-        setTimeout(() => {
-            if (!isShowDetails) {
-                handleMoveLeft()
-            }
-        }, 5000)
-    }
-
-    function showDatails() {
-        setIsShowDatails(true)
-    }
-
     return <div className="carousel-wrapper">
         <button className="text-whiteColor absolute left-5" onClick={handleMoveLeft}>
-            {"<"}
+            <ArrowCircleLeft size="42" />
         </button>
         {carousel && carousel.map((item, index) => {
-            return <><img src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} onMouseOver={showDatails} onMouseLeave={() => setIsShowDatails(false)} /></>
+            return <img src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`}/>
         })}
         <button className="text-whiteColor right-5 absolute" onClick={handleMoveRight}>
-            {">"}
+            <ArrowCircleRight size="42" />
         </button>
     </div>
 }
