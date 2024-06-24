@@ -3,15 +3,12 @@ import { useState } from "react";
 import "./carousel-style.css";
 import { ArrowCircleRight } from "@phosphor-icons/react/dist/ssr";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
+import ApiGamesInformations from "@/services/api/ApiGamesInformations";
+import Link from "next/link";
 
 export default function Carousel() {
-    const carouselInit = [
-        { src: "/images/cs-go.png", info: "GTA: Is a Game" },
-        { src: "/images/final-fantasy.png", info: "GTA: Is a Game" },
-        { src: "/images/gta-v.png", info: "GTA: Is a Game" },
-        { src: "/images/league-of-legends.png", info: "GTA: Is a Game" },
-        { src: "/images/wow.png", info: "GTA: Is a Game" },
-    ]
+    const carouselInit = ApiGamesInformations.getNewstGames()
+
     const [carousel, setCarousel] = useState(carouselInit);
     function handleMoveLeft() {
         let aux = carousel[0]
@@ -37,7 +34,10 @@ export default function Carousel() {
             <ArrowCircleLeft size="42" />
         </button>
         {carousel && carousel.map((item, index) => {
-            return <img src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`}/>
+            return <Link href={`/game/${item.id}`}>
+                <img src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} />
+
+            </Link>
         })}
         <button className="text-whiteColor right-5 absolute" onClick={handleMoveRight}>
             <ArrowCircleRight size="42" />
