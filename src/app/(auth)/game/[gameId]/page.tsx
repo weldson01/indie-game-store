@@ -1,6 +1,9 @@
+"use client"
 import ApiGamesInformations from "@/services/api/ApiGamesInformations"
 import { Button } from "@mui/material"
 import { FavoriteBorder } from "@mui/icons-material";
+import { useContext } from "react";
+import { RecentActivityContext } from "@/context/RecentActivity";
 interface IProps {
     params: {
         gameId: string
@@ -9,7 +12,9 @@ interface IProps {
 
 export default function GamePage({ params }: IProps) {
     const game = ApiGamesInformations.getSingleGame(parseInt(params.gameId))
-
+    // @ts-ignore
+    const {setGame} = useContext(RecentActivityContext)
+    setGame(game)
 
     return (
         <div>
