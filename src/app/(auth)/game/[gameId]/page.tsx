@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import NotFoundGame from "./not-found";
 interface IProps {
     params: {
         gameId: string
