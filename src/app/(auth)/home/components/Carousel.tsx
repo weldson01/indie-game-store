@@ -5,6 +5,7 @@ import { ArrowCircleRight } from "@phosphor-icons/react/dist/ssr";
 import { ArrowCircleLeft } from "@phosphor-icons/react";
 import ApiGamesInformations from "@/services/api/ApiGamesInformations";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Carousel() {
     const carouselInit = ApiGamesInformations.getNewstGames()
@@ -35,7 +36,7 @@ export default function Carousel() {
         </button>
         {carousel && carousel.map((item, index) => {
             return <Link href={`/game/${item.id}`}>
-                <img src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} />
+                <Image width={860} height={520} src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} key={item.id}/>
 
             </Link>
         })}

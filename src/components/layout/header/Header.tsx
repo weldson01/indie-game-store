@@ -31,7 +31,7 @@ export default function Header() {
             </label>
         </form>
         <ul className="gap-16 min-h-full ml-20">
-            {menuLinks.map(links => <li><Link href={links.href}>{links.title}</Link></li>)}
+            {menuLinks.map(links => <li key={links.href}><Link href={links.href}>{links.title}</Link></li>)}
         </ul>
         <ul className="gap-8">
             <li>

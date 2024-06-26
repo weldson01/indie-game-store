@@ -4,6 +4,9 @@ import { Button } from "@mui/material"
 import { FavoriteBorder } from "@mui/icons-material";
 import { useContext } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import NotFoundGame from "./not-found";
 interface IProps {
     params: {
         gameId: string
@@ -15,7 +18,9 @@ export default function GamePage({ params }: IProps) {
     // @ts-ignore
     const {setGame} = useContext(RecentActivityContext)
     setGame(game)
-
+    if(!game){
+        notFound();
+    }
     return (
         <div>
             <div className="grid grid-cols-8 p-10">
@@ -44,7 +49,7 @@ export default function GamePage({ params }: IProps) {
                 <div className="flex  gap-5">
                     {game.images?.map(image=>{
                         return <>
-                            <img src={image} alt={image} className="h-36 hover:h-52 w-52 hover:w-80 transition-all "/>
+                            <Image width={860} height={520} src={image} alt={image} className="h-36 hover:h-52 w-52 hover:w-80 transition-all " key={image}/>
                         </>
                     })}
                 </div>
