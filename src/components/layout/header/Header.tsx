@@ -22,7 +22,7 @@ export default function Header() {
         }
     ]
 
-    return <header className="bg-primary max-w-full min-h-20 ml-64 pl-10 flex align-middle items-center justify-between shadow-lg">
+    return <header className="bg-primary max-w-full min-h-20 pl-10 flex align-middle items-center justify-between shadow-lg">
         <form className="flex bg-input rounded mx-5 pl-2 py-2">
             <button className="" onClick={handleSearch}>
                 <MagnifyingGlass size={24} color="#ffffff" className="icon" />
@@ -31,7 +31,7 @@ export default function Header() {
                 <input className="" id="input-search" />
             </label>
         </form>
-        <ul className="gap-16 min-h-full ml-20">
+        <ul className="gap-16 ml-20">
             {menuLinks.map(links => <li key={links.href}><Link href={links.href}>{links.title}</Link></li>)}
         </ul>
         <ul className="gap-8">

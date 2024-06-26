@@ -4,11 +4,15 @@ import RecentActivityProvider from "@/context/RecentActivity"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return <RecentActivityProvider>
-        <Header />
-        <Sidebar />
-        <main className="bg-primary pl-72">
-            {children}
-        </main>
+        <div className="flex bg-primary">
+            <Sidebar />
+            <div className="flex flex-col flex-1">
+                <Header />
+                <main className="bg-primary mt-10 flex-1">
+                    {children}
+                </main>
+            </div>
+        </div>
     </RecentActivityProvider>
 }
 

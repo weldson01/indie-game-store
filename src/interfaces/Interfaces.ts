@@ -6,3 +6,8 @@ export interface IGame {
     uriGame: string
     images?: string[]
 }
+
+export type InputsLogin = {
+    email: string
+    password: string
+}

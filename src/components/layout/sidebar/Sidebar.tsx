@@ -4,18 +4,19 @@ import "./sidebar.css";
 import Link from "next/link";
 import { useContext } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
+import Image from "next/image";
 
 
 export default function Sidebar() {
     // @ts-ignore
     const { game } = useContext(RecentActivityContext)
 
-    return <aside className="flex flex-col bg-secondary fixed top-0 max-w-72 h-full shadow-2xl rounded-e-3xl z-10" >
-        <div className="flex justify-between px-5 py-6">
+    return <aside className="flex flex-col bg-secondary max-w-72 shadow-2xl rounded-e-3xl z-10" >
+        <div className="flex justify-between px-5 py-6 sticky top-0">
             <h1 className="text-3xl text-whiteColor">INDIE GAME STORE</h1>
             <Atom width={72} height={72} color="#ffffff" />
         </div>
-        <nav>
+        <nav className="sticky top-32">
             <ul className="side-menu">
                 <li>
                     <Link href={"/home"}><House /> Home</Link>
@@ -35,13 +36,13 @@ export default function Sidebar() {
             </ul>
         </nav>
         {game &&
-            <div className="px-10 pt-5">
+            <div className="sticky top-96 px-10 pt-5">
                 <Link href={`/game/${game.id}`}>
                     <h2 className="text-2xl text-center">
                         Recent Activity
                     </h2>
                     <p className="text-center">{game.title}</p>
-                    <img src={game.src} alt="" />
+                    <Image width={500} height={350} src={game.src} alt="" />
                 </Link>
             </div>
         }

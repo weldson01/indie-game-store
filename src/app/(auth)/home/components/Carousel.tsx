@@ -30,17 +30,19 @@ export default function Carousel() {
         setCarousel(auxCarousel)
     }
 
-    return <div className="carousel-wrapper">
-        <button className="text-whiteColor absolute left-5" onClick={handleMoveLeft}>
+    return <div className="flex flex-1 items-center justify-between carousel-wrapper">
+        <button className="text-whiteColor" onClick={handleMoveLeft}>
             <ArrowCircleLeft size="42" />
         </button>
-        {carousel && carousel.map((item, index) => {
-            return <Link href={`/game/${item.id}`} key={item.id}>
-                <Image width={860} height={520} src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`}/>
+        <div>
+            {carousel && carousel.map((item, index) => {
+                return <Link href={`/game/${item.id}`} key={item.id}>
+                    <Image width={860} height={520} src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} />
 
-            </Link>
-        })}
-        <button className="text-whiteColor right-5 absolute" onClick={handleMoveRight}>
+                </Link>
+            })}
+        </div>
+        <button className=" text-whiteColor" onClick={handleMoveRight}>
             <ArrowCircleRight size="42" />
         </button>
     </div>
