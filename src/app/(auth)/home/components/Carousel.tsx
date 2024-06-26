@@ -35,8 +35,8 @@ export default function Carousel() {
             <ArrowCircleLeft size="42" />
         </button>
         {carousel && carousel.map((item, index) => {
-            return <Link href={`/game/${item.id}`}>
-                <Image width={860} height={520} src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} key={item.id}/>
+            return <Link href={`/game/${item.id}`} key={item.id}>
+                <Image width={860} height={520} src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`}/>
 
             </Link>
         })}

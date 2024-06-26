@@ -16,4 +16,7 @@ class ApiGamesInformations {
     }
 }
 
-export default new ApiGamesInformations()
+const ApiGame = new ApiGamesInformations(); 
+
+
+export default ApiGame;

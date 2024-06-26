@@ -2,6 +2,7 @@
 import Link from "next/link";
 import "./header.css";
 import { BellSimple, Chat, MagnifyingGlass } from "@phosphor-icons/react";
+import Image from "next/image";
 
 export default function Header() {
 
@@ -41,6 +42,6 @@ export default function Header() {
                 <Link href="/"><BellSimple size={32} color="#ffffff" /></Link>
             </li>
         </ul>
-        <img src="https://placehold.co/50x50" alt="" className="max-h-16 rounded-full mr-5" />
+        <Image width={50} height={50} src="https://placehold.co/50x50" alt="" className="max-h-16 rounded-full mr-5" />
     </header>
 }
