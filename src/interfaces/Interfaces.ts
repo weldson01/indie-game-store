@@ -11,3 +11,15 @@ export type InputsLogin = {
     email: string
     password: string
 }
+
+export interface APILoginArgs{
+    email: string,
+    password: string
+}
+
+export interface IUser{
+    email: string,
+    name: string,
+    favoriteGames?: IGame[],
+    imageUri?: string,
+}

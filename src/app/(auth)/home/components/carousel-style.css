@@ -10,30 +10,29 @@
 }
 
 .item0 {
-    left: 15%;
+    left: 5%;
     z-index: 8;
-    bottom: 8%;
+    top: 8%;
 }
 
 .item1 {
-    left: 25%;
+    left: 15%;
     height: 175px;
     z-index: 9;
-    bottom: 5%;
+    top: 5%;
 }
 
 .item2 {
     width: 400px;
     height: 250px;
-    left: 35%;
-    bottom: -10%;
+    left: 30%;
+    top:0;
     z-index: 10;
-    animation: 1s change-item-left infinite;
 }
 
 .item3 {
     left: 55%;
-    bottom: 5%;
+    top: 5%;
     height: 175px;
     z-index: 9;
 }
@@ -41,6 +40,6 @@
 .item4 {
     left: 65%;
     z-index: 8;
-    bottom: 8%;
+    top: 8%;
 }
 

@@ -13,36 +13,33 @@ export default function Carousel() {
     const [carousel, setCarousel] = useState(carouselInit);
     function handleMoveLeft() {
         let aux = carousel[0]
-        let auxCarousel = [...carousel]
-        for (let i = 0; i < auxCarousel.length; i++) {
-            auxCarousel[i] = auxCarousel[i + 1];
+        for (let i = 0; i < carousel.length; i++) {
+            carousel[i] = carousel[i + 1];
         }
-        auxCarousel[auxCarousel.length - 1] = aux;
-        setCarousel(auxCarousel)
+        carousel[carousel.length - 1] = aux;
+        setCarousel([...carousel])
     }
     function handleMoveRight() {
         let aux = carousel[carousel.length - 1]
-        let auxCarousel = [...carousel]
-        for (let i = auxCarousel.length - 1; i > 0; i--) {
-            auxCarousel[i] = auxCarousel[i - 1];
+        for (let i = carousel.length - 1; i > 0; i--) {
+            carousel[i] = carousel[i - 1];
         }
-        auxCarousel[0] = aux;
-        setCarousel(auxCarousel)
+        carousel[0] = aux;
+        setCarousel([...carousel])
     }
 
-    return <div className="flex flex-1 items-center justify-between carousel-wrapper">
+    return <div className="flex flex-1 items-center my-20 justify-between px-20">
         <button className="text-whiteColor" onClick={handleMoveLeft}>
             <ArrowCircleLeft size="42" />
         </button>
-        <div>
+        <div className="carousel-wrapper min-h-80 w-full overflow-x-hidden">
             {carousel && carousel.map((item, index) => {
                 return <Link href={`/game/${item.id}`} key={item.id}>
-                    <Image width={860} height={520} src={item.src} alt={item.src} className={`item${index} carousel-item transition-all`} />
-
+                    <Image width={860} height={520} src={item.src} alt={item.src} className={`${"carousel-item item"+index} transition-all`} />
                 </Link>
             })}
         </div>
-        <button className=" text-whiteColor" onClick={handleMoveRight}>
+        <button className="ml-10 text-whiteColor" onClick={handleMoveRight}>
             <ArrowCircleRight size="42" />
         </button>
     </div>
