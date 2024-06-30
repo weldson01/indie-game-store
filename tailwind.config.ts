@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {},
     colors: {
+      red: "red",
       primary: "#191A19",
       secondary: "#00224D",
       input: "#0A0B0A",
