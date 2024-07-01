@@ -5,6 +5,7 @@ import auth from "@/services/api/ApiAuth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Close, Dangerous } from "@mui/icons-material"
 import { Alert } from "@mui/material"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -71,6 +72,7 @@ export default function Login() {
                 </div>
 
                 <input type="submit" value="Login" className="text-whiteColor bg-success h-10 hover:bg-opacity-85 cursor-pointer" />
+                <Link href="/sign-in" className="underline hover:no-underline hover:animate-pulse text-center">Create an account</Link>
             </form>
         </div>)
 }

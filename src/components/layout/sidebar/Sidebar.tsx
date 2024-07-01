@@ -10,9 +10,9 @@ import Image from "next/image";
 export default function Sidebar() {
     // @ts-ignore
     const { game } = useContext(RecentActivityContext)
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(true)
 
-    return <aside className={`flex flex-col bg-secondary max-w-72 min-h-screen shadow-2xl rounded-e-3xl z-10  ${!showMenu && "-translate-x-3/4"} transition-all`}>
+    return <aside className={`flex flex-col bg-secondary max-w-72 min-h-screen shadow-2xl rounded-e-3xl z-10  ${!showMenu && "-translate-x-3/4"} lg:translate-x-0 transition-all`}>
         <div className="flex justify-between px-5 py-6 sticky top-0">
             <h1 className="text-3xl text-whiteColor">INDIE GAME STORE</h1>
             <Atom width={72} height={72} color="#ffffff" onClick={()=>setShowMenu(!showMenu)}/>
