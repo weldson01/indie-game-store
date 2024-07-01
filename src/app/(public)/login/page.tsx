@@ -3,8 +3,8 @@
 import { userContext } from "@/context/UserContext"
 import auth from "@/services/api/ApiAuth"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Close, Dangerous, TextFields } from "@mui/icons-material"
-import { Alert, TextField } from "@mui/material"
+import { Close, Dangerous } from "@mui/icons-material"
+import { Alert } from "@mui/material"
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -26,7 +26,7 @@ export default function Login() {
     const router = useRouter()
     const [bannerErro, setBannerErro] = useState(false)
     // @ts-ignore
-    const { user, setUser } = useContext(userContext)
+    const { setUser } = useContext(userContext)
 
     const submiteHandle: SubmitHandler<loginFormData> = (data) => {
         console.log(data);

@@ -22,4 +22,5 @@ export interface IUser{
     name: string,
     favoriteGames?: IGame[],
     imageUri?: string,
+    password: string
 }
