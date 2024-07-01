@@ -5,18 +5,22 @@ class ApiAuth{
     isLoginSuccess({email, password}: APILoginArgs){
         // return user with the Auth key
         if(email == "admin@admin.com" && password == "admin"){
-           return {isValid: true, authKey:"A.B.C123" , user:{email, name: "Carl", imageUri: "https://pbs.twimg.com/profile_images/1410085780337405959/eQTpu4l0_400x400.jpg"}}
+           const user = users.find((e)=>e.email==email && e.password==password)
+           return {isValid:true, user};
         }
         return {isValid: false, user:null}
     }
     createUser(user:IUser){
         // post data user for API to create a new user
         try{
+            const result = users.find(e=>e.email===user.email)
+            if (result){
+                throw new Error("Email aready used")
+            }
             users.push(user)
-
         }catch(err){
             console.log(err)
-            return {message: "There's something wrong"}
+            return {message: "Email aready used"}
         }
         console.log(users)
         return {message: "ok", user}

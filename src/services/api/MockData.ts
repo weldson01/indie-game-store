@@ -22,5 +22,11 @@ export const users: IUser[] = [
         favoriteGames: [{ id: 4, src: "/images/wow.png", title: "Wow", info: "Wow is a good game", uriGame: "https://worldofwarcraft.blizzard.com/pt-br/" }],
         imageUri: "https://steamuserimages-a.akamaihd.net/ugc/1975420364378297884/9AC78E3C2A0C93138227813C75BCDC127547441A/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true",
         password: "admin"
+    },
+    {
+       email:"carl@carl.com", 
+       name: "Carl", 
+       password:"123123",
+       imageUri: "https://pbs.twimg.com/profile_images/1410085780337405959/eQTpu4l0_400x400.jpg"
     }
 ]
