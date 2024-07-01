@@ -36,7 +36,7 @@ export default function Sidebar() {
                 </li>
             </ul>
         </nav>
-        {game && showMenu &&
+        {game.title && showMenu &&
             <div className="sticky top-96 px-10 pt-5">
                 <Link href={`/game/${game.id}`}>
                     <h2 className="text-2xl text-center">
