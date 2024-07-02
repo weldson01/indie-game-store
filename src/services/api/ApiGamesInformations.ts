@@ -7,6 +7,13 @@ class ApiGamesInformations {
         // TODO
         return games
     }
+    getSingleGameByTitle(title: string){
+        // return from API the game based on the name params
+        const game = games.find((g)=> g.title === title)
+        if(game){
+            return game
+        }
+    }
     getSingleGame(id: number): IGame {
         // return informations about a single game
         // TODO
