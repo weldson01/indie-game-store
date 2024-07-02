@@ -26,7 +26,7 @@ export default function Header() {
         <ul className="gap-16 ml-20">
             {menuLinks.map(links => <li key={links.href}><Link href={links.href}>{links.title}</Link></li>)}
         </ul>
-        <ul className="gap-8">
+        <ul className="flex gap-8">
             <li>
                 <Link href="/"><Chat size={32} color="#ffffff" /></Link>
             </li>

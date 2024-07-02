@@ -50,21 +50,21 @@ export default function SignIn() {
                 </Alert>
             }
             <h1 className="text-4xl pb-10">Sign-in</h1>
-            <form onSubmit={handleSubmit(submitHandle)} className="flex flex-col items-center gap-5">
-                <TextField variant="filled" color="primary" label="name" className="bg-whiteColor min-w-96" error={errors.name ? true : false}
+            <form onSubmit={handleSubmit(submitHandle)} className="flex flex-col items-center min-w-96 gap-5">
+                <TextField variant="filled" color="primary" label="name" className="bg-whiteColor w-full" error={errors.name ? true : false}
                     helperText={errors.name?.message}
                     {...register("name")}
                 >
                     <Input color="primary" />
                 </TextField>
 
-                <TextField variant="filled" color="primary" label="email" className="bg-whiteColor min-w-96" type="email" error={errors.email ? true : false}
+                <TextField variant="filled" color="primary" label="email" className="bg-whiteColor w-full" type="email" error={errors.email ? true : false}
                     helperText={errors.email?.message}
                     {...register("email")}>
                     <Input color="primary" />
                 </TextField>
 
-                <TextField variant="filled" color="primary" label="password" className="bg-whiteColor min-w-96" type="password"
+                <TextField variant="filled" color="primary" label="password" className="bg-whiteColor w-full" type="password"
                     error={errors.password ? true : false}
                     helperText={errors.password?.message}
                     {...register("password")}
@@ -72,7 +72,7 @@ export default function SignIn() {
                     <Input color="primary" />
                 </TextField>
 
-                <TextField variant="filled" color="primary" label="password confirm" className="bg-whiteColor min-w-96" type="password"
+                <TextField variant="filled" color="primary" label="password confirm" className="bg-whiteColor w-full" type="password"
                     error={errors.confirmPassword ? true : false}
                     helperText={errors.confirmPassword?.message}
                     {...register("confirmPassword")} >

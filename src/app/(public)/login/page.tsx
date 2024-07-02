@@ -56,8 +56,10 @@ export default function Login() {
                     <input type="text"
                         {...register("email", { required: true, deps: "email" })}
                         aria-invalid={errors?.email ? "true" : "false"}
-                        className="pl-2 h-10"
-                        placeholder="Email" />
+                        className="text-primary pl-2 h-10"
+                        placeholder="Email" 
+                        
+                        />
 
                 </div>
 
@@ -67,7 +69,7 @@ export default function Login() {
                     <input type="password"
                         {...register("password", { required: true, deps: "password" })}
                         aria-invalid={errors?.email ? "true" : "false"}
-                        className="pl-2 h-10"
+                        className="text-primary pl-2 h-10"
                         placeholder="Password" />
                 </div>
 
