@@ -1,50 +1,94 @@
 "use client"
 import { Atom, Gear, House, Newspaper, SquaresFour, Users } from "@phosphor-icons/react";
-import "./sidebar.css";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
 import Image from "next/image";
+import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material";
+import { Close, Menu } from "@mui/icons-material";
 
 
 export default function Sidebar() {
     // @ts-ignore
     const { game } = useContext(RecentActivityContext)
-    const [showMenu, setShowMenu] = useState(true)
+    const [showMenu, setShowMenu] = useState(false)
 
-    return <aside className={`flex flex-col bg-secondary max-w-72 min-h-screen shadow-2xl rounded-e-3xl z-10  ${!showMenu && "-translate-x-3/4"} lg:translate-x-0 transition-all`}>
-        <div className="flex justify-between px-5 py-6 sticky top-0">
-            <h1 className="text-3xl text-whiteColor">INDIE GAME STORE</h1>
-            <Atom width={72} height={72} color="#ffffff" onClick={()=>setShowMenu(!showMenu)}/>
-        </div>
-        <nav className="sticky top-32">
-            <ul className="side-menu">
-                <li>
-                    <Link href={"/home"}><House />{showMenu && "Home"}</Link>
-                </li>
-                <li> 
-                    <Link href={"/dashboard"}><SquaresFour />{showMenu && "Dashboard"} </Link>
-                </li>
-                <li>
-                    <Link href={"#"}><Users />{showMenu && "Groups"}</Link>
-                </li>
-                <li>
-                    <Link href={"#"}><Newspaper />{showMenu && "News/blog"}</Link>
-                </li>
-                <li>
-                    <Link href={"#"}><Gear />{showMenu && "Settings"}</Link>
-                </li>
-            </ul>
-        </nav>
-        {game.title && showMenu &&
-            <div className="sticky top-96 px-10 pt-5">
-                <Link href={`/game/${game.id}`}>
-                    <h2 className="text-2xl text-center">
-                    </h2>
-                    <p className="text-center">{game.title}</p>
-                    <Image width={500} height={350} src={game.src} alt="" />
+    const handleToggleMenu = () => {
+        setShowMenu(!showMenu)
+    }
+    return <aside>
+        <Button className="min-h-full rounded-full" onClick={handleToggleMenu}>
+            <Menu />
+        </Button>
+        <Drawer open={showMenu} title="Indie Game Store" >
+            <List>
+                <ListItemButton onClick={handleToggleMenu}>
+                    <Close />
+                </ListItemButton>
+
+                <Link href="/home">
+                    <ListItem>
+                        <ListItemIcon>
+                            <House size={32} />
+                        </ListItemIcon>
+                        <ListItemText>
+                            <Typography variant="h4">
+                                Home
+                            </Typography>
+                        </ListItemText>
+                    </ListItem>
                 </Link>
-            </div>
-        }
+                <Link href="#">
+                    <ListItem>
+                        <ListItemIcon>
+                            <SquaresFour size={32} />
+                        </ListItemIcon>
+                        <ListItemText>
+                            <Typography variant="h4">
+                                Dashboard
+                            </Typography>
+                        </ListItemText>
+                    </ListItem>
+                </Link>
+                <Link href="#">
+                    <ListItem>
+                        <ListItemIcon>
+                            <Users size={32} />
+                        </ListItemIcon>
+                        <ListItemText>
+                            <Typography variant="h4">
+                                Groups
+                            </Typography>
+                        </ListItemText>
+                    </ListItem>
+                </Link>
+                <Link href="#">
+                    <ListItem>
+                        <ListItemIcon>
+                            <Gear size={32} />
+                        </ListItemIcon>
+                        <ListItemText>
+                            <Typography variant="h4">
+                                Settings
+                            </Typography>
+                        </ListItemText>
+                    </ListItem>
+                </Link>
+            </List>
+            <Box>
+                {
+                    game &&
+                    <Stack alignItems="center">
+                        <Typography variant="h4">
+                            Recent Activity
+                        </Typography>
+                        <Typography variant="h5" py={2}>
+                            {game.title}
+                        </Typography>
+                        <Image width={320} height={250} src={game?.src} alt={game?.title}/>
+                    </Stack>
+                }
+            </Box>
+        </Drawer>
     </aside>
 }

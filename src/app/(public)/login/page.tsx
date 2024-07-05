@@ -4,7 +4,7 @@ import { userContext } from "@/context/UserContext"
 import auth from "@/services/api/ApiAuth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Close, Dangerous } from "@mui/icons-material"
-import { Alert } from "@mui/material"
+import { Alert, Slide } from "@mui/material"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useContext, useState } from "react"
@@ -44,9 +44,11 @@ export default function Login() {
         <div className="flex flex-1 p-20 flex-col min-h-full bg-primary items-center justify-center">
             {
                 bannerErro &&
-                <Alert variant="filled" severity="error" icon={<Dangerous color="error" />} className="fixed bottom-20 animate-pulse" action={<Close onClick={() => setBannerErro(false)} />}>
-                    The email or password is wrong try again...
-                </Alert>
+                <Slide direction="up" mountOnEnter unmountOnExit in>
+                    <Alert variant="filled" severity="error" icon={<Dangerous color="error" />} className="fixed bottom-20 animate-pulse" action={<Close onClick={() => setBannerErro(false)} className="hover:cursor-pointer" />}>
+                        The email or password is wrong try again...
+                    </Alert>
+                </Slide>
             }
             <h1 className="mb-20 text-5xl">Login</h1>
             <form action={"/home"} method="post" onSubmit={handleSubmit(submiteHandle)} className="flex flex-1 flex-col gap-10 w-full max-w-96">
@@ -57,9 +59,9 @@ export default function Login() {
                         {...register("email", { required: true, deps: "email" })}
                         aria-invalid={errors?.email ? "true" : "false"}
                         className="text-primary pl-2 h-10"
-                        placeholder="Email" 
-                        
-                        />
+                        placeholder="Email"
+
+                    />
 
                 </div>
 

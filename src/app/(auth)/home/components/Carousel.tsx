@@ -28,7 +28,7 @@ export default function Carousel() {
         setCarousel([...carousel])
     }
 
-    return <div className="flex flex-1 items-center my-20 justify-between px-20">
+    return <div className="flex flex-1 items-center py-5 justify-between px-20">
         <button className="text-whiteColor" onClick={handleMoveLeft}>
             <ArrowCircleLeft size="42" />
         </button>

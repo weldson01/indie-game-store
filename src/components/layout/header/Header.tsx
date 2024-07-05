@@ -23,7 +23,7 @@ export default function Header() {
 
     return <header className="bg-primary max-w-full min-h-20 flex flex-1 align-middle items-center justify-between shadow-lg">
         <SearchInput />
-        <ul className="gap-16 ml-20">
+        <ul className="flex gap-16 ml-20">
             {menuLinks.map(links => <li key={links.href}><Link href={links.href}>{links.title}</Link></li>)}
         </ul>
         <ul className="flex gap-8">

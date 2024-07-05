@@ -3,7 +3,7 @@ import { userContext } from "@/context/UserContext";
 import auth from "@/services/api/ApiAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Close, Dangerous } from "@mui/icons-material";
-import { Alert, Button, Input, TextField } from "@mui/material";
+import { Alert, Button, Input, Slide, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -16,7 +16,7 @@ const signInSchrema = z.object({
     email: z.string().min(1, "Email is necessary").email("Email is not valid"),
     password: z.string().min(1, "Password is required"),
     confirmPassword: z.string().min(1, "Confirm Password is required")
-}).refine((data)=> data.password === data.confirmPassword, {
+}).refine((data) => data.password === data.confirmPassword, {
     message: "Password don't match",
     path: ["confirmPassword"]
 })
@@ -29,12 +29,12 @@ export default function SignIn() {
     });
 
     // @ts-ignore
-    const {setUser} = useContext(userContext)
+    const { setUser } = useContext(userContext)
     const [msgErro, setMsgErro] = useState("")
     const router = useRouter()
     const submitHandle: SubmitHandler<signInFormData> = (data) => {
-       const result = auth.createUser({name:data.name, email:data.email, password:data.password})
-        if(result.message == "ok"){
+        const result = auth.createUser({ name: data.name, email: data.email, password: data.password })
+        if (result.message == "ok") {
             setUser(result.user)
             router.push("/home")
             return
@@ -45,9 +45,12 @@ export default function SignIn() {
     return (
         <div className="flex flex-col  items-center justify-center bg-primary w-screen h-screen">
             {
-                msgErro && <Alert variant="filled" color="error" className="absolute  top-10" action={<Close onClick={()=>setMsgErro("")}></Close>}>
-                    {msgErro}
-                </Alert>
+                msgErro &&
+                <Slide direction="up" mountOnEnter unmountOnExit>
+                    <Alert variant="filled" color="error" className="absolute  top-10" action={<Close onClick={() => setMsgErro("")} className="hover:cursor-pointer"></Close>}>
+                        {msgErro}
+                    </Alert>
+                </Slide>
             }
             <h1 className="text-4xl pb-10">Sign-in</h1>
             <form onSubmit={handleSubmit(submitHandle)} className="flex flex-col items-center min-w-96 gap-5">
