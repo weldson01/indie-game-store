@@ -1,5 +1,5 @@
 "use client"
-import { Atom, Gear, House, Newspaper, SquaresFour, Users } from "@phosphor-icons/react";
+import { Atom, Gear, House, SquaresFour, Users } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material";
 import { Close, Menu } from "@mui/icons-material";
 
+const iconMenu = [<House size={32} color="#fff"/>, <SquaresFour size={32} color="#fff"/>, <Users size={32} color="#fff"/>, <Gear size={32} color="#fff"/>]
 
 export default function Sidebar() {
     // @ts-ignore
@@ -20,64 +21,31 @@ export default function Sidebar() {
         <Button className="min-h-full rounded-full" onClick={handleToggleMenu}>
             <Menu />
         </Button>
-        <Drawer open={showMenu} title="Indie Game Store" >
-            <List>
+        <Drawer open={showMenu} title="Indie Game Store" onClose={handleToggleMenu}>
+            <Box className="bg-primary text-whiteColor min-h-full">
+            <List title="ok">
                 <ListItemButton onClick={handleToggleMenu}>
                     <Close />
                 </ListItemButton>
-
-                <Link href="/home">
-                    <ListItem>
-                        <ListItemIcon>
-                            <House size={32} />
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="h4">
-                                Home
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                </Link>
-                <Link href="#">
-                    <ListItem>
-                        <ListItemIcon>
-                            <SquaresFour size={32} />
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="h4">
-                                Dashboard
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                </Link>
-                <Link href="#">
-                    <ListItem>
-                        <ListItemIcon>
-                            <Users size={32} />
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="h4">
-                                Groups
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                </Link>
-                <Link href="#">
-                    <ListItem>
-                        <ListItemIcon>
-                            <Gear size={32} />
-                        </ListItemIcon>
-                        <ListItemText>
-                            <Typography variant="h4">
-                                Settings
-                            </Typography>
-                        </ListItemText>
-                    </ListItem>
-                </Link>
+                {["home", "dashboard", "groups", "settings"].map((text, index) => {
+                    return (<Link href="/home">
+                        <ListItem>
+                            <ListItemIcon>
+                                {iconMenu[index]}
+                            </ListItemIcon>
+                            <ListItemText>
+                                <Typography variant="h5">
+                                    {text}
+                                </Typography>
+                            </ListItemText>
+                        </ListItem>
+                    </Link>)
+                })
+                }
             </List>
             <Box>
                 {
-                    game &&
+                    game.title &&
                     <Stack alignItems="center">
                         <Typography variant="h4">
                             Recent Activity
@@ -85,9 +53,10 @@ export default function Sidebar() {
                         <Typography variant="h5" py={2}>
                             {game.title}
                         </Typography>
-                        <Image width={320} height={250} src={game?.src} alt={game?.title}/>
+                        <Image width={320} height={250} src={game?.src} alt={game?.title} />
                     </Stack>
                 }
+            </Box>
             </Box>
         </Drawer>
     </aside>
