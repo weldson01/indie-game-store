@@ -9,7 +9,6 @@ import Image from "next/image";
 
 export default function Carousel() {
     const carouselInit = ApiGamesInformations.getNewstGames()
-
     const [carousel, setCarousel] = useState(carouselInit);
     function handleMoveLeft() {
         let aux = carousel[0]

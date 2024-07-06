@@ -25,12 +25,12 @@ export default function SearchInput() {
 
     return (
         <form onSubmit={handleSubmit(handleSearch)}>
-            <Stack direction={"row"} margin={2} component="div" width={300} bgcolor={"white"} marginX={2} justifyContent={"space-between"} className="rounded">
+            <Stack direction={"row"} margin={2} component="div" width={300} bgcolor={"white"} marginX={2} justifyContent={"space-between"} className="rounded-full overflow-hidden">
                 <Autocomplete disablePortal fullWidth options={games.map(op => op.title)}
-                    renderInput={(params) => <TextField {...register("option")} {...params} label="Search Game" variant="outlined" color="info" ></TextField>
+                    renderInput={(params) => <TextField {...register("option")} {...params} label="Search a Game" variant="filled" className="rounded-full" ></TextField>
                     }
                 />
-                <Button type="submit" variant="contained">
+                <Button type="submit" variant="text" className="">
                     <Search/>
                 </Button>
             </Stack>
