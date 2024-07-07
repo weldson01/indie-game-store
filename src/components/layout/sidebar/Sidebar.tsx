@@ -4,10 +4,10 @@ import Link from "next/link";
 import { useContext, useState } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
 import Image from "next/image";
-import { Box, Button, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material";
+import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, Typography } from "@mui/material";
 import { Close, Menu } from "@mui/icons-material";
 
-const iconMenu = [<House size={32} color="#fff" />, <SquaresFour size={32} color="#fff" />, <Users size={32} color="#fff" />, <Gear size={32} color="#fff" />]
+const iconMenu = [<House size={32} color="#fff" key="houseIcon" />, <SquaresFour size={32} color="#fff" key="squaresIcon" />, <Users size={32} color="#fff" key="usersIcon" />, <Gear size={32} color="#fff" key="gearIcon" />]
 
 export default function Sidebar() {
     // @ts-ignore
@@ -28,8 +28,8 @@ export default function Sidebar() {
                         <Close />
                     </ListItemButton>
                     {["home", "dashboard", "groups", "settings"].map((text, index) => {
-                        return (<Link href="/home">
-                            <ListItem>
+                        return (<Link href="/home" key={text}>
+                            <ListItem >
                                 <ListItemIcon>
                                     {iconMenu[index]}
                                 </ListItemIcon>

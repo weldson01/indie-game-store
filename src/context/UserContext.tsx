@@ -2,7 +2,7 @@
 
 import { IUserContext } from "@/interfaces/ContextInterfaces";
 import { IUser } from "@/interfaces/Interfaces";
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext,  useState } from "react";
 
 export const userContext = createContext<IUserContext | undefined>(undefined)
 

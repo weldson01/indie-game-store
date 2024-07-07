@@ -2,7 +2,7 @@
 import ApiGamesInformations from "@/services/api/ApiGamesInformations"
 import { Button } from "@mui/material"
 import { FavoriteBorder } from "@mui/icons-material";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RecentActivityContext } from "@/context/RecentActivity";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -14,6 +14,15 @@ interface IProps {
 
 export default function GamePage({ params }: IProps) {
     const game = ApiGamesInformations.getSingleGame(parseInt(params.gameId))
+    const [imageShow, setImageShow] = useState("");
+
+
+    useEffect(()=>{
+        if(game){
+            setImageShow(game.src)
+        }
+    },[])
+
     // @ts-ignore
     const {setGame} = useContext(RecentActivityContext)
     setGame(game)
@@ -24,7 +33,7 @@ export default function GamePage({ params }: IProps) {
         <div>
             <div className="grid grid-cols-8 p-10">
                 <div className="col-span-4">
-                    <img src={game.src} alt={game.title} />
+                    <Image height={1800} width={3200} src={game.src} alt={game.title} />
                     <div className="flex pt-5 gap-16 justify-between">
                         <Button color="success" variant="contained" size="large" fullWidth href={game.uriGame}>
                             Play now
@@ -45,10 +54,15 @@ export default function GamePage({ params }: IProps) {
             </div>
             <div className="bg-primary p-10 z-10 min-h-96 overflow-x-auto">
                 <h4 className="text-2xl pb-5">In Game</h4>
-                <div className="flex  gap-5">
+                <div className="flex justify-center">
+                    <Image src={`${imageShow}`} width={400} height={300} alt="Image in game"/>
+                </div>
+                <div className="flex py-32 gap-10 justify-center transition-all w-full">
                     {game.images?.map(image=>{
                         return <>
-                            <Image width={860} height={520} src={image} alt={image} className="h-36 hover:h-52 w-52 hover:w-80 transition-all " key={image}/>
+                            <Image width={860} height={520} src={image} alt={image} className="h-28 w-36  hover:cursor-pointer" key={image}
+                            onClick={()=>setImageShow(image)}
+                            />
                         </>
                     })}
                 </div>

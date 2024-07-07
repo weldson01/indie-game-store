@@ -53,29 +53,31 @@ export default function Login() {
             <h1 className="mb-20 text-5xl">Login</h1>
             <form action={"/home"} method="post" onSubmit={handleSubmit(submiteHandle)} className="flex flex-1 flex-col gap-10 w-full max-w-96">
                 <div className="flex flex-col">
-                    {errors.email && <span className="text-sm text-red">{errors.email.message}</span>}
+                    {errors.email && <span id="ErrorEmail"  className="text-sm text-red">{errors.email.message}</span>}
 
                     <input type="text"
                         {...register("email", { required: true, deps: "email" })}
                         aria-invalid={errors?.email ? "true" : "false"}
                         className="text-primary pl-2 h-10"
                         placeholder="Email"
-
+                        id="email"
                     />
 
                 </div>
 
                 <div className="flex flex-col">
-                    {errors.password && <span className="text-nowrap text-sm text-red">{errors.password.message}</span>}
+                    {errors.password && <span id="error-password" className="text-nowrap text-sm text-red">{errors.password.message}</span>}
 
                     <input type="password"
                         {...register("password", { required: true, deps: "password" })}
                         aria-invalid={errors?.email ? "true" : "false"}
                         className="text-primary pl-2 h-10"
-                        placeholder="Password" />
+                        placeholder="Password" 
+                        id="password"
+                        />
                 </div>
 
-                <input type="submit" value="Login" className="text-whiteColor bg-success h-10 hover:bg-opacity-85 cursor-pointer" />
+                <input type="submit" value="Login" className="text-whiteColor bg-success h-10 hover:bg-opacity-85 cursor-pointer" id="BtnSubmit" />
                 <Link href="/sign-in" className="underline hover:no-underline hover:animate-pulse text-center">Create an account</Link>
             </form>
         </div>)
