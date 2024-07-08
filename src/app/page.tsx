@@ -1,8 +1,7 @@
 import ApiGame from "@/services/api/ApiGamesInformations";
 import { Gamepad } from "@mui/icons-material";
-import { Box, Button, Container, Grid, Paper, Skeleton, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Paper, Skeleton, Typography } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 import { GridItem } from "./components/indexPage";
 
 export default function Home() {
@@ -14,11 +13,9 @@ export default function Home() {
           Indie Game Store
         </Typography>
         <div className="actions">
-          <Link href="/login">
-            <Button variant="text" style={{ color: "white" }}>
-              Login
-            </Button>
-          </Link>
+          <Button href="/login" variant="text" style={{ color: "white" }}>
+            Login
+          </Button>
         </div>
       </header>
       <Box component={"section"} className="flex gap-5 flex-col justify-center items-center">
@@ -27,7 +24,9 @@ export default function Home() {
         </Typography>
         <Image width="1200" height="740" src="/images/cs-go.png" alt="" className="sm:w-2/3" />
         <Typography variant="body1">
-          CS-GO
+          <Button href="/publicgames/0" variant="contained" color="success">
+            CS-GO Global
+          </Button>
         </Typography>
       </Box>
       <Typography py={2} variant="h5">
@@ -52,7 +51,8 @@ export default function Home() {
         <Grid container gap={2}>
           {games ? games.map((game) => {
             return (
-              <GridItem game={game} key={game.title}/>
+              // @ts-ignore
+              <GridItem game={game} key={game.title} />
             )
           }) :
             <Grid item xs="auto">
@@ -62,9 +62,9 @@ export default function Home() {
         </Grid>
       </Paper>
       <footer className="flex flex-col justify-center align-middle h-20">
-          <Typography align="center">
-            A website by @Weldson
-          </Typography>
+        <Typography align="center">
+          A website by @Weldson
+        </Typography>
       </footer>
     </Container>
   );
