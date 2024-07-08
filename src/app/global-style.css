@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    color: #fff;
-}
-input{
-    color:black;
-}
-
 
 @layer utilities {
     /* Hide scrollbar for Chrome, Safari and Opera */

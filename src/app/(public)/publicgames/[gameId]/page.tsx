@@ -1,11 +1,9 @@
 "use client"
 import ApiGamesInformations from "@/services/api/ApiGamesInformations"
 import { Button } from "@mui/material"
-import { FavoriteBorder } from "@mui/icons-material";
-import { useContext, useEffect, useState } from "react";
-import { RecentActivityContext } from "@/context/RecentActivity";
+import {  useState } from "react";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { useRouter } from "next/navigation";
 interface IProps {
     params: {
         gameId: string
@@ -14,23 +12,13 @@ interface IProps {
 
 export default function GamePage({ params }: IProps) {
     const game = ApiGamesInformations.getSingleGame(parseInt(params.gameId))
-    const [imageShow, setImageShow] = useState("");
-
-
-    useEffect(()=>{
-        if(game){
-            setImageShow(game.src)
-        }
-    },[])
-
-    // @ts-ignore
-    const {setGame} = useContext(RecentActivityContext)
-    setGame(game)
-    if(!game){
-        notFound();
-    }
+    const [imageShow, setImageShow] = useState(game.src);
+    const router = useRouter()
     return (
-        <div>
+        <div className="bg-primary">
+            <Button onClick={()=>router.back()} variant="contained" className="rounded-full m-5">
+                Go back
+            </Button>
             <div className="grid grid-cols-8 p-10">
                 <div className="col-span-4">
                     <Image height={1800} width={3200} src={game.src} alt={game.title} />
@@ -38,9 +26,7 @@ export default function GamePage({ params }: IProps) {
                         <Button color="success" variant="contained" size="large" fullWidth href={game.uriGame}>
                             Play now
                         </Button>
-                        <Button variant="contained" endIcon={<FavoriteBorder color="primary"/>}  size="large" fullWidth className="bg-focous hover:bg-focous">
-                            Favorite
-                        </Button>
+                       
                     </div>
                 </div>
                 <div className="col-span-3 px-10">
